@@ -10,6 +10,9 @@
 
   <div class="container-fluid bg-grey">
       <div class="col-sm-8 col-sm-offset-2">
+        {% if information.image %}
+          <img src="{{information.image.url}}" class="img-responsive img" alt="{{information}}">
+        {% endif %}
         <h2>{{information}}</h2>
         <h4><p class="text-justify text-muted">{{information.content|linebreaksbr}}</p></h4>
         <div class="row">

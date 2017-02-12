@@ -7,6 +7,7 @@ class Information(models.Model):
   slug = models.SlugField('Identificador', max_length=100)
   content = models.TextField('Conteúdo', max_length=1000)
   tags = TaggableManager(blank=True)
+  image = models.ImageField(upload_to='documents/information', verbose_name="Imagem", blank=True, null=True)
   created_at = models.DateTimeField('Criado em', auto_now_add=True)
   updated_at = models.DateTimeField('Modificado em', auto_now=True)
 
@@ -26,7 +27,7 @@ class Information(models.Model):
 class File(models.Model):
   title = models.CharField('Título', max_length=100)
   slug = models.SlugField('Identificador', max_length=100)
-  document = models.FileField(upload_to='documents/information', verbose_name="Documentos", null=True, blank=True)
+  document = models.FileField(upload_to='documents/information', verbose_name="Documentos")
   information = models.ForeignKey(Information, on_delete=models.CASCADE, verbose_name="Informação", related_name="files")
 
   def __str__(self):

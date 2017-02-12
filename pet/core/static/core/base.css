@@ -230,6 +230,12 @@ footer .glyphicon {
   display: inline !important;
 }
 
+.logo {
+  height: 250px !important;
+  width: 250px !important;
+  display: inline !important;
+}
+
 @media (min-width: 768px) {
   .padding-thanks {
     padding-top: 250px;
