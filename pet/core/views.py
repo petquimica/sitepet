@@ -1,16 +1,11 @@
 from django.shortcuts import render
-from .models import About, Footer
+from information.models import Information
 
 
 def home(request):
-  what_we_do = About.objects.all()[0]
-  about_us = About.objects.all()[1]
-  footers = Footer.objects.all()
-  print(footers)
   template = 'core/home.html'
+  informations = Information.objects.all()[:3]
   context = {
-    'about_us': about_us,
-    'what_we_do': what_we_do,
-    'footers': footers
+    'informations': informations,
   }
   return render(request, template, context)

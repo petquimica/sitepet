@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'information/information.css' %}" />{% endblock %}
+{% block navbar %}{% include 'core/navbar.html' %}{% endblock %}
+{% block main %}
+  <div class="container-fluid text-center">
+    <h2>informações</h2>
+    {% if tag %}
+      <p>{{tag}}</p>
+      <a href="{% url 'information:index' %}">voltar</a>
+    {% endif %}
+  </div>
+
+  <div class="container-fluid">
+    {% for information in object_list %}
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">{{information.title}} <small><i>({{information.created_at}})</i></small></h4>
+          <p class="text-justify">{{information.content|truncatewords:35}}<a href="{{information.get_absolute_url}}"> ver mais</a></p>
+          <p><span class="glyphicon glyphicon-tags tags"></span> tags:
+            {% for tag in information.tags.all %}
+              <a href="{% url 'information:index_tag' tag.slug %}"> {{tag}}</a>{% if not forloop.last %},{% endif %}
+            {% empty %}
+              não há tags
+            {% endfor %}
+          </p>
+        </div>
+        <div class="media-right">
+          <a href="{{information.get_absolute_url}}" class="btn btn-default button-link"><span class="glyphicon glyphicon-menu-right"></span></a>
+        </div>
+        <hr>
+      </div>
+    {% endfor %}
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="waves-effect">
+          <a href="?page={{page_obj.previous_page_number}}">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </li>
+      {% endif %}
+      {% for page in paginator.page_range %}
+        <li class=" waves-effect {% if page == page_obj.number %}active{% endif %}">
+          <a href="?page={{page}}">{{page}}</a>
+        </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="waves-effect">
+          <a href="?page={{page_obj.next_page_number}}">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endblock %}

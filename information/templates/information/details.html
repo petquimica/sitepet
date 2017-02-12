@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'information/information.css' %}" />{% endblock %}
+{% block navbar %}{% include 'core/navbar.html' %}{% endblock %}
+{% block main %}
+  <div class="jumbotron text-center">
+    <h2>INFORMAÇÃO</h2>
+    <p><a href="{% url 'information:index' %}">Voltar</a></p>
+  </div>
+
+  <div class="container-fluid bg-grey">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h2>{{information}}</h2>
+        <h4><p class="text-justify text-muted">{{information.content|linebreaksbr}}</p></h4>
+        <div class="row">
+          <div class="col-sm-8">
+            <p><span class="glyphicon glyphicon-tags tags"></span> tags:
+              {% for tag in information.tags.all %}
+                <a href="{% url 'information:index_tag' tag.slug %}"> {{tag}}</a>{% if not forloop.last %},{% endif %}
+              {% empty %}
+                não há tags
+              {% endfor %}
+            </p>
+          </div>
+          {% if information.files.exists and information.links.exists %}
+            <div class="col-md-4">
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#files"><span class="glyphicon glyphicon-open-file"></span> Arquivos</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#links"><span class="glyphicon glyphicon-link"></span> Links</button>
+              </div>
+            </div>
+          {% else %}
+            {% if information.files.exists %}
+              <div class="col-md-4">
+                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#files"><span class="glyphicon glyphicon-open-file"></span> Arquivos</button>
+              </div>
+            {% endif %}
+            {% if information.links.exists %}
+              <div class="col-md-4">
+                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#links"><span class="glyphicon glyphicon-link"></span> Links</button>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+  </div>
+  {% include 'information/files.html' %}
+  {% include 'information/links.html' %}
+{% endblock %}
