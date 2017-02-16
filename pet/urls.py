@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('pet.core.urls')),
     url(r'^informacoes/', include('information.urls')),
+    url(r'^gallery/', include('gallery.urls')),
 ]
 
 if settings.DEBUG:

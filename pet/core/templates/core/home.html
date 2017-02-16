@@ -74,20 +74,36 @@
     <h2>EXPOSIÇÕES DE FOTOS</h2><br>
     <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="{{favorite.id}}" class="active"></li>
+        {% for photo in gallery %}
+          <li data-target="#myCarousel" data-slide-to="{{photo.id}}"></li>
+        {% endfor %}
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="{% static 'core/img/clara.jpg' %}" class="img-responsive img-gallery" alt="Image">
-        </div>
-        <div class="item">
-          <img src="{% static 'core/img/marianna.jpg' %}" class="img-responsive img-gallery" alt="Image">
-        </div>
-        <div class="item">
-          <img src="{% static 'core/img/premiados.jpg' %}" class="img-responsive img-gallery" alt="Image">
-        </div>
+        {% if recent.image %}
+          <div class="item active">
+            <img src="{{recent.image.url}}" class="img-responsive img-gallery" alt="{{recent.title}}">
+            <div class="carousel-caption">
+              <h3>{{recent.title}}</h3>
+            </div>
+          </div>
+        {% else %}
+          <div class="item active">
+            <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="{{favorite.title}}">
+          </div>
+        {% endif %}
+        {% for photo in gallery %}
+          <div class="item">
+            <img src="{{photo.image.url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
+            <div class="carousel-caption">
+              <h3>{{photo.title}}</h3>
+            </div>
+          </div>
+        {% empty %}
+          <div class="item">
+            <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="Image">
+          </div>
+        {% endfor %}
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -98,29 +114,49 @@
         <span class="sr-only">Próximo</span>
       </a>
     </div>
-    <br><br><a href="#" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
+    <br><br><a href="{% url 'gallery:gallery' %}" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
   </div>
+
   <div id="contact" class="container-fluid">
     <h2 class="text-center">CONTATO</h2>
+    {% if messages %}
+      <div class="well">
+        {% for message in messages %}
+          <span>{{message}}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
     <div class="row">
       <div class="col-sm-5">
-        <p><span class="glyphicon glyphicon-map-marker"></span> Brasília, BR</p>
-        <p><span class="glyphicon glyphicon-phone"></span> +55 (61) 3107-2895</p>
-        <p><span class="glyphicon glyphicon-envelope"></span> petunbquimica@gmail.com</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> {{adicional_information.address}}</p>
+        <p><span class="glyphicon glyphicon-phone"></span> {{adicional_information.phone}}</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> {{adicional_information.email}}</p>
       </div>
       <div class="col-sm-7 slideanim">
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
+        <form method="post" action="#contact">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
+              {% for error in form.name.errors %}
+                <div class="well">{{error}}</div>
+              {% endfor %}
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+              {% for error in form.email.errors %}
+                <div class="well">{{error}}</div>
+              {% endfor %}
+            </div>
           </div>
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-          </div>
-        </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Mensagem" rows="5"></textarea><br>
-        <div class="row">
-          <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Enviar</button>
+          <textarea class="form-control" id="comments" name="message" placeholder="Mensagem" rows="5"></textarea><br>
+          {% for error in form.message.errors %}
+            <div class="well">{{error}}</div>
+          {% endfor %}
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-right" type="submit">Enviar</button>
+            </div>
           </div>
         </div>
       </div>
