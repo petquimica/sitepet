@@ -4,15 +4,26 @@
   <div class="jumbotron text-center">
     <h1>PET QUÍMICA IQ/UnB/MEC</h1>
     <p>Programa de Educação Tutorial do Instituto de Química/ Universidade de Brasília</p>
-    <img src="{% static 'core/img/pet.jpg' %}" class="img-responsive margin" style="display:inline" alt="Bird" width="250" height="250">
-   </div>
+    <div class="container-fluid container-fluid-bottom">
+      <div class="col-sm-7 text-right">
+        <img src="{% static 'core/img/pet.jpg' %}" class="img-responsive logo" alt="Logo PET">
+      </div>
+      <div class="col-sm-offset-1 col-sm-4 padding-thanks">
+        <h4>Agradecemos a <a href="https://github.com/VictorArnaud" target="_blank">Victor Hugo Arnaud Deon</a>, especialista em Django/Python, por sua contribuição a nosso site. <br />Grupo PET-Química</h4>
+      </div>
+    </div>
+  </div>
 
-  <div id="sobre" class="container-fluid bg-grey">
+  <div id="about" class="container-fluid bg-grey">
     <div class="row">
       <div class="col-sm-8">
         <h2>Quem somos</h2><br>
-        <h4>{{about_us.title}}</h4><br>
-        <p>{{about_us.description|linebreaksbr}}</p>
+        <h4>O grupo PET Química é um dos grupos de excelência em atividades acadêmicas, de extensão e pesquisa da Universidade de Brasília,
+          partícipe do Programa de Educação Tutorial do Ministério da Educação</h4>
+        <p>Financiado pelo Ministério da Educação, o grupo PET-Química conta com aproximadamente 20 alunos de graduação dos cursos de
+        Licenciatura e Bacharelado em Química, Química Tecnológica e Engenharia Química. A tutora, Elaine Rose Maia, doutora em
+        cristalografia de macromoléculas vegetais e especialista em drug design, é professora titular da UnB. O foco do grupo está no incentivo
+        aos alunos pelas Ciências Químicas.</p>
         <br><a href="#" class="btn btn-default btn-lg" role="button">Conheça nosso time</a>
       </div>
       <div class="col-sm-4">
@@ -28,34 +39,28 @@
       </div>
       <div class="col-sm-8">
         <h2>O que fazemos</h2><br>
-        <h4>{{what_we_do.title}}</h4>
-        <p>{{what_we_do.description}}<p>
+        <h4>Ainda vai fazer</h4>
+        <p>Ainda vai fazer<p>
       </div>
     </div>
   </div>
 
-  <div id="informacoes" class="container-fluid text-center bg-grey">
+  <div id="information" class="container-fluid text-center bg-grey">
     <h2>INFORMAÇÕES</h2>
     <br>
     <div class="row slideanim">
-      <div class="col-sm-4">
-        <h4>Relatório Anual – PET Química UnB</h4>
-        <p>Segue abaixo o relatório anual referente às atividades do grupo PET Química da Universidade de Brasília do ano de 2016. Todas os projetos e atividades ao longo do ano de 2016 estão documentadas no relatório, bem como seus respectivos resultados e avaliações.</p>
-      </div>
-      <div class="col-sm-4">
-        <h4>Certificados da IX Semana da Química</h4>
-        <p>Os certificados da IX Semana da Química estão disponíveis no link abaixo. A IX Semana da Química ocorreu em outubro de 2016. Todos os certificados já estão disponíveis, tanto os de participação quanto os de minicursos.</p>
-      </div>
-      <div class="col-sm-4">
-        <h4>Cerimônia de entrega de medalhas OQDF 2016</h4>
-        <p>Aos estudantes e coordenadores. A cerimônia de entrega de medalhas aos vencedores da OQDF 2016 ocorrerá na data 26/10/2016, às 19h00 no Instituto de Química, Universidade de Brasília.</p>
-      </div>
+      {% for information in informations %}
+        <div class="col-sm-4">
+          <h4>{{information}}</h4>
+          <p>{{information.content|truncatewords:35}}</p>
+        </div>
+      {% endfor %}
     </div>
-    <br><br><a href="#" class="btn btn-default btn-lg" role="button">Ver mais informações</a>
+    <br><br><a href="{% url 'information:index' %}" class="btn btn-default btn-lg" role="button">Ver mais informações</a>
     <br><br>
   </div>
 
-  <div id="projetos" class="container-fluid">
+  <div id="project" class="container-fluid">
     <div class="row">
       <div class="col-sm-12">
         <h2>Projetos</h2><br>
@@ -65,24 +70,40 @@
     </div>
   </div>
 
-  <div id="exposicao" class="container-fluid text-center bg-grey">
+  <div id="gallery" class="container-fluid text-center bg-grey">
     <h2>EXPOSIÇÕES DE FOTOS</h2><br>
     <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="{{favorite.id}}" class="active"></li>
+        {% for photo in gallery %}
+          <li data-target="#myCarousel" data-slide-to="{{photo.id}}"></li>
+        {% endfor %}
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="{% static 'core/img/clara.jpg' %}" class="img-responsive img-gallery" alt="Image">
-        </div>
-        <div class="item">
-          <img src="{% static 'core/img/marianna.jpg' %}" class="img-responsive img-gallery" alt="Image">
-        </div>
-        <div class="item">
-          <img src="{% static 'core/img/premiados.jpg' %}" class="img-responsive img-gallery" alt="Image">
-        </div>
+        {% if recent.image %}
+          <div class="item active">
+            <img src="{{recent.image.url}}" class="img-responsive img-gallery" alt="{{recent.title}}">
+            <div class="carousel-caption">
+              <h3>{{recent.title}}</h3>
+            </div>
+          </div>
+        {% else %}
+          <div class="item active">
+            <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="{{favorite.title}}">
+          </div>
+        {% endif %}
+        {% for photo in gallery %}
+          <div class="item">
+            <img src="{{photo.image.url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
+            <div class="carousel-caption">
+              <h3>{{photo.title}}</h3>
+            </div>
+          </div>
+        {% empty %}
+          <div class="item">
+            <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="Image">
+          </div>
+        {% endfor %}
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -93,29 +114,49 @@
         <span class="sr-only">Próximo</span>
       </a>
     </div>
-    <br><br><a href="#" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
+    <br><br><a href="{% url 'gallery:gallery' %}" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
   </div>
-  <div id="contato" class="container-fluid">
+
+  <div id="contact" class="container-fluid">
     <h2 class="text-center">CONTATO</h2>
+    {% if messages %}
+      <div class="well">
+        {% for message in messages %}
+          <span>{{message}}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
     <div class="row">
       <div class="col-sm-5">
-        <p><span class="glyphicon glyphicon-map-marker"></span> Brasília, BR</p>
-        <p><span class="glyphicon glyphicon-phone"></span> +55 (61) 3107-2895</p>
-        <p><span class="glyphicon glyphicon-envelope"></span> petunbquimica@gmail.com</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> {{adicional_information.address}}</p>
+        <p><span class="glyphicon glyphicon-phone"></span> {{adicional_information.phone}}</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> {{adicional_information.email}}</p>
       </div>
       <div class="col-sm-7 slideanim">
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
+        <form method="post" action="#contact">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
+              {% for error in form.name.errors %}
+                <div class="well">{{error}}</div>
+              {% endfor %}
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+              {% for error in form.email.errors %}
+                <div class="well">{{error}}</div>
+              {% endfor %}
+            </div>
           </div>
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-          </div>
-        </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Mensagem" rows="5"></textarea><br>
-        <div class="row">
-          <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Enviar</button>
+          <textarea class="form-control" id="comments" name="message" placeholder="Mensagem" rows="5"></textarea><br>
+          {% for error in form.message.errors %}
+            <div class="well">{{error}}</div>
+          {% endfor %}
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-right" type="submit">Enviar</button>
+            </div>
           </div>
         </div>
       </div>

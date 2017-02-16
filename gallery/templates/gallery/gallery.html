@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'gallery/gallery.css' %}" />{% endblock %}
+{% block navbar %}{% include 'core/navbar.html' %}{% endblock %}
+{% block main %}
+  <div class="container-fluid text-center">
+    <h2>Galeria de Imagens</h2>
+  </div>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          {% for photo in gallery %}
+          <div class="col-sm-3">
+            {% if photo.image %}
+              <a href="" data-toggle="modal" data-target="#image{{photo.pk}}">
+                <img src="{{photo.image.url}}" class="img-responsive  gallery-img" alt="{{photo.title}}">
+              </a>
+              <div class="modal fade" id="image{{photo.pk}}" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">{{photo.title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{photo.description|linebreaksbr}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-thumbnail" alt="{{image.title}}">
+            {% endif %}
+          </div>
+          {% empty %}
+            <p class="not-found">Não há fotos nessa galeria</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="waves-effect">
+          <a href="?page={{page_obj.previous_page_number}}">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </li>
+      {% endif %}
+      {% for page in paginator.page_range %}
+        <li class=" waves-effect {% if page == page_obj.number %}active{% endif %}">
+          <a href="?page={{page}}">{{page}}</a>
+        </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="waves-effect">
+          <a href="?page={{page_obj.next_page_number}}">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endblock %}

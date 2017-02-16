@@ -1,20 +1,17 @@
 from django.db import models
 
-class About(models.Model):
-  title = models.TextField('Título', max_length=180)
-  description = models.TextField('Descrição', max_length=550)
+
+class AdicionalInformation(models.Model):
+  address = models.CharField('Endereço', max_length=100)
+  phone = models.CharField('Telefone', max_length=20)
+  email = models.EmailField('Email')
+  created_at = models.DateTimeField('Criado em', auto_now_add=True)
+  updated_at = models.DateTimeField('Modificado em', auto_now=True)
 
   def __str__(self):
-    return self.title
+    return "Informações Adicionais"
 
   class Meta:
-    verbose_name = "Sobre"
-
-class Footer(models.Model):
-  copyright = models.TextField('Rodapé', max_length=550)
-
-  def __str__(self):
-    return self.copyright
-
-  class Meta:
-    verbose_name = "Rodapé"
+    verbose_name = "Informações Adicionais"
+    verbose_name_plural = "Informações Adicionais"
+    ordering = ['created_at']
