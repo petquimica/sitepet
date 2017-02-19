@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'taggit',
     'information',
     'gallery',
+    'team',
 ]
 
 MIDDLEWARE = [
