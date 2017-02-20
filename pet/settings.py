@@ -11,22 +11,21 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'iz^ht!q9gbo-zg#0=9aqq7i#4bjo92fikn68th2&f0(37@e9o*'
+SECRET_KEY = os.getenv('SECRET_KEY', 'SECRET_KEY_DEFAULT')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
 
 # Application definition
 
@@ -42,10 +41,12 @@ INSTALLED_APPS = [
     'information',
     'gallery',
     'team',
+    'project',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,21 +119,32 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
+# Arquivos Estáticos (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# Banco de dados
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+# Configurações de segurança do heroku
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Permitir todos os dominios que vão ter acesso a essa aplicação
+ALLOWED_HOSTS = ['*']
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'PET: <petunbquimica@gmail.com>'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'petunbquimica@gmail.com'
-EMAIL_HOST_PASSWORD = '****'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '***')
 EMAIL_PORT = 587
 CONTACT_EMAIL = 'petunbquimica@gmail.com'
+
+# Sobrescrever as configurações do settings.py com as do local_settings.py
+try:
+  from .local_settings import *
+except ImportError:
+  pass

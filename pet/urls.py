@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^', include('pet.core.urls')),
     url(r'^informacoes/', include('information.urls')),
     url(r'^galeria/', include('gallery.urls')),
+    url(r'^projetos/', include('project.urls')),
     url(r'^', include('team.urls')),
 ]
 

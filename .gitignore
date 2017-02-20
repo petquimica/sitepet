@@ -89,6 +89,5 @@ ENV/
 .ropeproject
 
 # Ignore the local settings on production
-pet/settings/local.py
+pet/local_settings.py
 media
-static
