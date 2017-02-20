@@ -7,6 +7,19 @@
   text-align: justify;
 }
 
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  .prof-description {
+    text-align: center !important;
+    text-indent: 0 !important;
+  }
+  .historic {
+    text-align: center !important;
+    text-indent: 0 !important;
+  }
+}
+
 .img-team {
   height: 250px !important;
   width: 250px !important;

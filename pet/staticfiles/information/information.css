@@ -14,10 +14,6 @@
   padding-right: 5px;
 }
 
-.justify {
-  text-align: justify;
-}
-
 .jumbotron {
   padding-bottom: 0px;
 }
@@ -34,4 +30,20 @@
   max-width: 350px;
   max-height: 350px;
   margin: auto;
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  .mobile {
+    text-align: center;
+    float: none !important;
+  }
+  .space {
+    margin-bottom: 20px;
+  }
+  .block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
