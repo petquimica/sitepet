@@ -9,4 +9,4 @@ class GalleryAdmin(admin.ModelAdmin):
   list_filter = ['created_at']
 
 
-admin.site.register(Gallery, GalleryAdmin)
+# admin.site.register(Gallery, GalleryAdmin)

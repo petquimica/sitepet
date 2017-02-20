@@ -1,0 +1,45 @@
+<div id="contact" class="container-fluid">
+  <h2 class="text-center">CONTATO</h2>
+  {% if messages %}
+    <div class="well">
+      {% for message in messages %}
+        <span>{{message}}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-sm-5">
+      <p><span class="glyphicon glyphicon-map-marker"></span> Brasilia, DF</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +55 (61) 3107-2895</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> petunbquimica@gmail.com</p>
+    </div>
+    <div class="col-sm-7 slideanim">
+      <form method="post" action="#contact">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
+            {% for error in form.name.errors %}
+              <div class="well">{{error}}</div>
+            {% endfor %}
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            {% for error in form.email.errors %}
+              <div class="well">{{error}}</div>
+            {% endfor %}
+          </div>
+        </div>
+        <textarea class="form-control" id="comments" name="message" placeholder="Mensagem" rows="5"></textarea><br>
+        {% for error in form.message.errors %}
+          <div class="well">{{error}}</div>
+        {% endfor %}
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <button class="btn btn-default pull-right" type="submit">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

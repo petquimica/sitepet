@@ -9,28 +9,12 @@
         <img src="{% static 'core/img/pet.jpg' %}" class="img-responsive logo" alt="Logo PET">
       </div>
       <div class="col-sm-offset-1 col-sm-4 padding-thanks">
-        <h4>Agradecemos a <a href="https://github.com/VictorArnaud" target="_blank">Victor Hugo Arnaud Deon</a>, especialista em Django/Python, por sua contribuição a nosso site. <br />Grupo PET-Química</h4>
+        <h4>Agradecemos a Victor Hugo Arnaud Deon, especialista em Django/Python, por sua contribuição a nosso site. <br />Grupo PET-Química</h4>
       </div>
     </div>
   </div>
 
-  <div id="about" class="container-fluid bg-grey">
-    <div class="row">
-      <div class="col-sm-8">
-        <h2>Quem somos</h2><br>
-        <h4>O grupo PET Química é um dos grupos de excelência em atividades acadêmicas, de extensão e pesquisa da Universidade de Brasília,
-          partícipe do Programa de Educação Tutorial do Ministério da Educação</h4>
-        <p>Financiado pelo Ministério da Educação, o grupo PET-Química conta com aproximadamente 20 alunos de graduação dos cursos de
-        Licenciatura e Bacharelado em Química, Química Tecnológica e Engenharia Química. A tutora, Elaine Rose Maia, doutora em
-        cristalografia de macromoléculas vegetais e especialista em drug design, é professora titular da UnB. O foco do grupo está no incentivo
-        aos alunos pelas Ciências Químicas.</p>
-        <br><a href="{% url 'team:team' %}" class="btn btn-default btn-lg" role="button">Conheça nosso time</a>
-      </div>
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-signal logo"></span>
-      </div>
-    </div>
-  </div>
+  {% include 'team/team_home.html' %}
 
   <div class="container-fluid ">
     <div class="row">
@@ -45,20 +29,7 @@
     </div>
   </div>
 
-  <div id="information" class="container-fluid text-center bg-grey">
-    <h2>INFORMAÇÕES</h2>
-    <br>
-    <div class="row slideanim">
-      {% for information in informations %}
-        <div class="col-sm-4">
-          <h4>{{information}}</h4>
-          <p>{{information.content|truncatewords:35}}</p>
-        </div>
-      {% endfor %}
-    </div>
-    <br><br><a href="{% url 'information:index' %}" class="btn btn-default btn-lg" role="button">Ver mais informações</a>
-    <br><br>
-  </div>
+  {% include 'information/information_home.html' %}
 
   <div id="project" class="container-fluid">
     <div class="row">
@@ -70,97 +41,9 @@
     </div>
   </div>
 
-  <div id="gallery" class="container-fluid text-center bg-grey">
-    <h2>EXPOSIÇÕES DE FOTOS</h2><br>
-    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="{{favorite.id}}" class="active"></li>
-        {% for photo in gallery %}
-          <li data-target="#myCarousel" data-slide-to="{{photo.id}}"></li>
-        {% endfor %}
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        {% if recent.image %}
-          <div class="item active">
-            <img src="{{recent.image.url}}" class="img-responsive img-gallery" alt="{{recent.title}}">
-            <div class="carousel-caption">
-              <h3>{{recent.title}}</h3>
-            </div>
-          </div>
-        {% else %}
-          <div class="item active">
-            <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="{{favorite.title}}">
-          </div>
-        {% endif %}
-        {% for photo in gallery %}
-          <div class="item">
-            <img src="{{photo.image.url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
-            <div class="carousel-caption">
-              <h3>{{photo.title}}</h3>
-            </div>
-          </div>
-        {% empty %}
-          <div class="item">
-            <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="Image">
-          </div>
-        {% endfor %}
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Próximo</span>
-      </a>
-    </div>
-    <br><br><a href="{% url 'gallery:gallery' %}" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
-  </div>
+  {% include 'gallery/gallery_static_home.html' %}
 
-  <div id="contact" class="container-fluid">
-    <h2 class="text-center">CONTATO</h2>
-    {% if messages %}
-      <div class="well">
-        {% for message in messages %}
-          <span>{{message}}</span>
-        {% endfor %}
-      </div>
-    {% endif %}
-    <div class="row">
-      <div class="col-sm-5">
-        <p><span class="glyphicon glyphicon-map-marker"></span> {{adicional_information.address}}</p>
-        <p><span class="glyphicon glyphicon-phone"></span> {{adicional_information.phone}}</p>
-        <p><span class="glyphicon glyphicon-envelope"></span> {{adicional_information.email}}</p>
-      </div>
-      <div class="col-sm-7 slideanim">
-        <form method="post" action="#contact">
-          {% csrf_token %}
-          <div class="row">
-            <div class="col-sm-6 form-group">
-              <input class="form-control" id="name" name="name" placeholder="Nome" type="text" required>
-              {% for error in form.name.errors %}
-                <div class="well">{{error}}</div>
-              {% endfor %}
-            </div>
-            <div class="col-sm-6 form-group">
-              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-              {% for error in form.email.errors %}
-                <div class="well">{{error}}</div>
-              {% endfor %}
-            </div>
-          </div>
-          <textarea class="form-control" id="comments" name="message" placeholder="Mensagem" rows="5"></textarea><br>
-          {% for error in form.message.errors %}
-            <div class="well">{{error}}</div>
-          {% endfor %}
-          <div class="row">
-            <div class="col-sm-12 form-group">
-              <button class="btn btn-default pull-right" type="submit">Enviar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% include 'core/contact.html' %}
+
   <div id="googleMap" style="height:400px;width:100%;"></div>
 {% endblock %}

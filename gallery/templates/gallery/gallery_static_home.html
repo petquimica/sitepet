@@ -1,0 +1,42 @@
+{% load static %}
+<div id="gallery" class="container-fluid text-center bg-grey">
+  <h2>EXPOSIÇÕES DE FOTOS</h2><br>
+  <div id="myCarousel" class="text-center carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="{% static 'gallery/img/clara.jpg' %}" class="img-responsive img-gallery" alt="Clara">
+        <div class="carousel-caption">
+          <h3>Clara</h3>
+        </div>
+      </div>
+      <div class="item">
+        <img src="{% static 'gallery/img/marianna.jpg' %}" class="img-responsive img-gallery" alt="Marianna">
+        <div class="carousel-caption">
+          <h3>Marianna</h3>
+        </div>
+      </div>
+      <div class="item">
+        <img src="{% static 'gallery/img/premiados.jpg' %}" class="img-responsive img-gallery" alt="Premiados">
+        <div class="carousel-caption">
+          <h3>Premiados</h3>
+        </div>
+      </div>
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Próximo</span>
+    </a>
+  </div>
+  <br><br><a href="{% url 'gallery:gallery' %}" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
+</div>

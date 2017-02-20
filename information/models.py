@@ -8,6 +8,7 @@ class Information(models.Model):
   content = models.TextField('Conteúdo', max_length=1000)
   tags = TaggableManager(blank=True)
   image = models.ImageField(upload_to='documents/information', verbose_name="Imagem", blank=True, null=True)
+  link = models.URLField('Google Driver', help_text='Link para o Google Driver', blank=True)
   created_at = models.DateTimeField('Criado em', auto_now_add=True)
   updated_at = models.DateTimeField('Modificado em', auto_now=True)
 
@@ -22,21 +23,3 @@ class Information(models.Model):
     verbose_name = 'Informação'
     verbose_name_plural = 'Informações'
     ordering = ['-created_at']
-
-
-class File(models.Model):
-  title = models.CharField('Título', max_length=100)
-  slug = models.SlugField('Identificador', max_length=100)
-  document = models.FileField(upload_to='documents/information', verbose_name="Documentos")
-  information = models.ForeignKey(Information, on_delete=models.CASCADE, verbose_name="Informação", related_name="files")
-
-  def __str__(self):
-    return self.title
-
-class Link(models.Model):
-  title = models.CharField('Título', max_length=100)
-  link = models.URLField('Link')
-  information = models.ForeignKey(Information, on_delete=models.CASCADE, verbose_name="Informação", related_name="links")
-
-  def __str__(self):
-    return self.link

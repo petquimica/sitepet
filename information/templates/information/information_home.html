@@ -1,0 +1,13 @@
+<div id="information" class="container-fluid text-center bg-grey">
+  <h2>INFORMAÇÕES</h2>
+  <br>
+  <div class="row slideanim">
+    {% for information in informations %}
+      <div class="col-sm-4">
+        <h4>{{information}}</h4>
+        <p>{{information.content|truncatewords:35}}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <br><br><a href="{% url 'information:index' %}" class="btn btn-default btn-lg" role="button">Ver mais informações</a>
+</div>

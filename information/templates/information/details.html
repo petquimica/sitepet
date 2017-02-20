@@ -25,28 +25,12 @@
               {% endfor %}
             </p>
           </div>
-          {% if information.files.exists and information.links.exists %}
+          {% if information.link %}
             <div class="col-md-4">
-              <div class="btn-group pull-right">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#files"><span class="glyphicon glyphicon-open-file"></span> Arquivos</button>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#links"><span class="glyphicon glyphicon-link"></span> Links</button>
-              </div>
+              <a href="{{information.link}}" class="btn btn-success pull-right" target="_blank"><span class="glyphicon glyphicon-link"></span> Arquivos</a>
             </div>
-          {% else %}
-            {% if information.files.exists %}
-              <div class="col-md-4">
-                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#files"><span class="glyphicon glyphicon-open-file"></span> Arquivos</button>
-              </div>
-            {% endif %}
-            {% if information.links.exists %}
-              <div class="col-md-4">
-                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#links"><span class="glyphicon glyphicon-link"></span> Links</button>
-              </div>
-            {% endif %}
           {% endif %}
         </div>
       </div>
   </div>
-  {% include 'information/files.html' %}
-  {% include 'information/links.html' %}
 {% endblock %}

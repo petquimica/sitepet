@@ -1,0 +1,47 @@
+{% load static %}
+<div id="gallery" class="container-fluid text-center bg-grey">
+  <h2>EXPOSIÇÕES DE FOTOS</h2><br>
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="{{favorite.id}}" class="active"></li>
+      {% for photo in gallery %}
+        <li data-target="#myCarousel" data-slide-to="{{photo.id}}"></li>
+      {% endfor %}
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      {% if recent.image %}
+        <div class="item active">
+          <img src="{{recent.image.url}}" class="img-responsive img-gallery" alt="{{recent.title}}">
+          <div class="carousel-caption">
+            <h3>{{recent.title}}</h3>
+          </div>
+        </div>
+      {% else %}
+        <div class="item active">
+          <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="{{favorite.title}}">
+        </div>
+      {% endif %}
+      {% for photo in gallery %}
+        <div class="item">
+          <img src="{{photo.image.url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
+          <div class="carousel-caption">
+            <h3>{{photo.title}}</h3>
+          </div>
+        </div>
+      {% empty %}
+        <div class="item">
+          <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="Image">
+        </div>
+      {% endfor %}
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Próximo</span>
+    </a>
+  </div>
+  <br><br><a href="{% url 'gallery:gallery' %}" class="btn btn-default btn-lg" role="button">Ver galeria de fotos</a>
+</div>

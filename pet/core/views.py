@@ -2,13 +2,11 @@ from django.shortcuts import render
 from django.contrib import messages
 from information.models import Information
 from gallery.models import Gallery
-from .models import AdicionalInformation
 from .forms import ContactForm
 
 
 def home(request):
   template = 'core/home.html'
-  adicional_information = AdicionalInformation.objects.all()[0]
   informations = Information.objects.all()[:3]
   recent = get_recent_picture()
   gallery = Gallery.objects.filter(recent_picture=False)[:2]
@@ -16,7 +14,6 @@ def home(request):
     'recent': recent,
     'informations': informations,
     'gallery': gallery,
-    'adicional_information': adicional_information,
   }
   send_email(request, context)
   return render(request, template, context)
