@@ -119,10 +119,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Servir arquivos de media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
 # Arquivos Estáticos (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
@@ -143,7 +139,8 @@ DEFAULT_FROM_EMAIL = 'PET: <petunbquimica@gmail.com>'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'petunbquimica@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '***')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '***')
+EMAIL_HOST_PASSWORD = '****'
 EMAIL_PORT = 587
 CONTACT_EMAIL = 'petunbquimica@gmail.com'
 
