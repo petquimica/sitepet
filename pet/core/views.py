@@ -5,16 +5,23 @@ from gallery.models import Gallery
 from .forms import ContactForm
 
 
+# def home(request):
+#   template = 'core/home.html'
+#   informations = Information.objects.all()[:3]
+#   recent = get_recent_picture()
+#   gallery = Gallery.objects.filter(recent_picture=False)[:2]
+#   context = {
+#     'recent': recent,
+#     'informations': informations,
+#     'gallery': gallery,
+#   }
+#   send_email(request, context)
+#   return render(request, template, context)
+
 def home(request):
   template = 'core/home.html'
   informations = Information.objects.all()[:3]
-  recent = get_recent_picture()
-  gallery = Gallery.objects.filter(recent_picture=False)[:2]
-  context = {
-    'recent': recent,
-    'informations': informations,
-    'gallery': gallery,
-  }
+  context = {'informations': informations}
   send_email(request, context)
   return render(request, template, context)
 
