@@ -1,0 +1,37 @@
+.button-link {
+  margin-top: 35px;
+}
+
+.text-center h2 {
+  margin-bottom: 0;
+}
+
+.navbar-right {
+  margin-right: 0px;
+}
+
+.tags {
+  padding-right: 5px;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.jumbotron {
+  padding-bottom: 0px;
+}
+
+.jumbotron a {
+  font-size: 16px;
+}
+
+.modal-dialog {
+  margin: 200px auto;
+}
+
+.img {
+  max-width: 350px;
+  max-height: 350px;
+  margin: auto;
+}
