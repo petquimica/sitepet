@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from .models import Project
 
@@ -12,6 +12,11 @@ class IndexView(ListView):
     queryset = Project.objects.all()
     queryset = search_project(self.request, queryset)
     return queryset
+
+
+class ProjectView(DetailView):
+  model = Project
+  template_name = 'project/details.html'
 
 
 def search_project(request, project_list):

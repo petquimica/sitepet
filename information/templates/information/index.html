@@ -26,8 +26,15 @@
     {% for information in object_list %}
       <div class="media">
         <div class="media-body">
-          <h4 class="media-heading">{{information.title}} <small><i>({{information.created_at}})</i></small></h4>
-          <p class="text-justify">{{information.content|truncatewords:35}}<a href="{{information.get_absolute_url}}"> ver mais</a></p>
+          <div class="visible-xs visible-sm">
+            <h4 class="media-heading text-center">{{information.title}}<br><small><i>({{information.created_at}})</i></small></h4>
+            <p class="text-justify">{{information.content|truncatewords:35}}</p>
+            <p class="text-center"><a href="{{information.get_absolute_url}}" class="btn btn-default block">Ver mais</a></p>
+          </div>
+          <div class="visible-lg visible-md">
+            <h4 class="media-heading">{{information.title}} <small><i>({{information.created_at}})</i></small></h4>
+            <p class="text-justify">{{information.content|truncatewords:35}}<a href="{{information.get_absolute_url}}"> ver mais</a></p>
+          </div>
           <p><span class="glyphicon glyphicon-tags tags"></span> tags:
             {% for tag in information.tags.all %}
               <a href="{% url 'information:index_tag' tag.slug %}"> {{tag}}</a>{% if not forloop.last %},{% endif %}
@@ -36,7 +43,7 @@
             {% endfor %}
           </p>
         </div>
-        <div class="media-right">
+        <div class="media-right visible-md visible-lg">
           <a href="{{information.get_absolute_url}}" class="btn btn-default button-link"><span class="glyphicon glyphicon-menu-right"></span></a>
         </div>
         <hr>

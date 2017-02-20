@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'project/project.css' %}" />{% endblock %}
+{% block active-project %}active{% endblock %}
+{% block main %}
+  <div class="jumbotron text-center">
+    <h2>PROJETO</h2>
+    <p><a href="{% url 'project:index' %}">Voltar</a></p>
+  </div>
+
+  <div class="container-fluid bg-grey">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h2 class="mobile">{{project}}</h2>
+        <h4><p class="text-justify text-muted mobile">{{project.content|linebreaksbr}}</p></h4>
+        {% if project.link %}
+          <div class="col-md-12 mobile pull-right">
+            <a href="{{project.link}}" class="btn btn-success pull-right space mobile block" target="_blank"><span class="glyphicon glyphicon-link"></span> Link do projeto</a>
+          </div>
+        {% endif %}
+      </div>
+  </div>
+{% endblock %}
