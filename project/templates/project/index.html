@@ -21,7 +21,7 @@
     {% for project in object_list %}
       <div class="media">
         <div class="media-body">
-          <h4 class="media-heading visible-md visible-lg">{{project.title}} <small><i>({{project.created_at}})</i></small></h4>
+          <h4 class="media-heading visible-md visible-lg">{{project.title}}</h4>
           <h4 class="media-heading text-center visible-xs visible-sm">{{project.title}}<br><small><i>({{project.created_at}})</i></small></h4>
           <p class="text-justify mobile">{{project.content|truncatewords:35}}</p>
           <a href="{% url 'project:details' project.slug %}" class="btn btn-default block" role="button">Ver projeto</a>
