@@ -41,12 +41,13 @@
       {% block main %}{% endblock %}
     </main>
     <footer>
+      <div class="col-sm-12 mapa">
+        <img src="{% static 'core/img/map.png' %}" class="img-responsive" alt="Mapa">
+      </div>
       {% include 'core/footer.html' %}
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="{% static 'core/base.js' %}"></script>
-    <script src="{% static 'core/map.js' %}"></script>
   </body>
 </html>
