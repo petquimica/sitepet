@@ -12,9 +12,6 @@
       {% if recent.image %}
         <div class="item active">
           <img src="{{recent.image.url}}" class="img-responsive img-gallery" alt="{{recent.title}}">
-          <div class="carousel-caption">
-            <h3>{{recent.title}}</h3>
-          </div>
         </div>
       {% else %}
         <div class="item active">
@@ -24,9 +21,6 @@
       {% for photo in gallery %}
         <div class="item">
           <img src="{{photo.image.url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
-          <div class="carousel-caption">
-            <h3>{{photo.title}}</h3>
-          </div>
         </div>
       {% empty %}
         <div class="item">

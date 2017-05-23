@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 class Information(models.Model):
   title = models.CharField('Título', max_length=100)
   slug = models.SlugField('Identificador', max_length=100)
-  content = models.TextField('Conteúdo', max_length=1000)
+  content = models.TextField('Conteúdo', max_length=100000)
   tags = TaggableManager(blank=True)
   image = models.ImageField(upload_to='documents/information', verbose_name="Imagem", blank=True, null=True)
   link = models.URLField('Google Driver', help_text='Link para o Google Driver', blank=True)
