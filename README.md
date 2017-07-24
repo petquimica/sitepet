@@ -1,4 +1,4 @@
-# PET
+﻿# PET-Química
 
 O grupo PET Química é um dos grupos de excelência em atividades acadêmicas, de extensão e pesquisa da Universidade de Brasília, partícipe do Programa de Educação Tutorial do Ministério da Educação
 
