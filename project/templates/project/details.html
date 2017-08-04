@@ -14,7 +14,9 @@
         <h4><p class="text-justify text-muted mobile">{{project.content|linebreaksbr}}</p></h4>
         {% if project.link %}
           <div class="col-md-12 mobile pull-right">
-            <a href="{{project.link}}" class="btn btn-success pull-right space mobile block" target="_blank"><span class="glyphicon glyphicon-link"></span> Link do projeto</a>
+            <a href="{{project.link}}" class="btn btn-success pull-right space mobile block" target="_blank">
+              <span class="glyphicon glyphicon-link"></span> Link do projeto
+            </a>
           </div>
         {% endif %}
       </div>
