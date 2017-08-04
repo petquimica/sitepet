@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
 from information.models import Information
-from gallery.models import Gallery
 from .forms import ContactForm
 
 
@@ -19,15 +18,3 @@ def send_email(request, context):
         form.send_message()
         messages.success(request, "Seu email foi enviado com sucesso")
     context['form'] = form
-
-
-def get_recent_picture():
-    gallery = Gallery.objects.all()
-    image = Gallery.objects.latest('created_at')
-    image.recent_picture = True
-    image.save()
-    gallery = Gallery.objects.all()[1:]
-    for photo in gallery:
-        photo.recent_picture = False
-        photo.save()
-    return image

@@ -1,9 +1,5 @@
-from django.views.generic import ListView
-from .models import Gallery
+from django.views.generic import TemplateView
 
 
-class GalleryView(ListView):
-    model = Gallery
-    context_object_name = 'gallery'
-    paginate_by = 12
+class GalleryView(TemplateView):
     template_name = 'gallery/gallery.html'
