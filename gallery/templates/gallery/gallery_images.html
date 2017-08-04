@@ -6,23 +6,24 @@
   <div class="container-fluid text-center">
     <h2>Galeria de Fotos</h2>
   </div>
-  <div class="container-fluid bg-grey">
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-body">
         <div class="row">
-          {% for folder in gallery %}
+          {% for photo in object_list %}
             <div class="col-sm-3 text-center">
-              {% if folder.background %}
-                <a href="{{folder.get_absolute_url}}">
-                  <img src="{{folder.background}}" class="img-responsive gallery-folder img-thumbnail" alt="{{folder.title}}">
-                </a>
-                <p>{{folder.title}}</p>
+              {% if photo.image_url %}
+                <img src="{{photo.image_url}}" class="img-responsive  gallery-img" alt="Image">
               {% else %}
-                <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive gallery-folder img-thumbnail" alt="{{folder.title}}">
+                <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive gallery-img img-thumbnail" alt="Image not found">
               {% endif %}
             </div>
           {% empty %}
-            <p class="not-found">Não há pastas nessa galeria.</p>
+            <p class="not-found">Não há fotos nessa pasta.</p>
           {% endfor %}
         </div>
+      </div>
+    </div>
     <ul class="pagination">
       {% if page_obj.has_previous %}
         <li class="waves-effect">

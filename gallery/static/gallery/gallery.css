@@ -6,6 +6,13 @@
   box-shadow: 3px 3px 15px grey;
 }
 
+.gallery-folder {
+  width: 300px;
+  height: 280px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
 .container-fluid {
   padding-bottom: 0;
 }

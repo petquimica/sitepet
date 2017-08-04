@@ -59,6 +59,9 @@ h4 {
 .logo {
   color: #79c142;
   font-size: 200px;
+  height: 250px !important;
+  width: 250px !important;
+  display: inline !important;
 }
 
 .thumbnail {
@@ -238,12 +241,6 @@ footer .glyphicon {
   display: inline !important;
 }
 
-.logo {
-  height: 250px !important;
-  width: 250px !important;
-  display: inline !important;
-}
-
 @media (min-width: 768px) {
   .padding-thanks {
     padding-top: 250px;
@@ -258,4 +255,8 @@ footer .glyphicon {
 
 .mapa {
   margin-bottom: 10px !important;
+}
+
+.btn-team {
+  margin-left: 10px;
 }
