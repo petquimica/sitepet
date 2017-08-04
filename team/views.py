@@ -1,20 +1,9 @@
-from django.shortcuts import render
-from django.views.generic import View, TemplateView
-from .models import Team
+from django.views.generic import TemplateView
 
-
-# class TeamView(View):
-#   template = 'team/team_static.html'
-
-#   def get(self, request):
-#     teacher = Team.objects.get(is_teacher=True)
-#     team = Team.objects.filter(is_teacher=False)
-#     context = {'team': team, 'teacher': teacher}
-#     return render(request, self.template, context)
 
 class TeamView(TemplateView):
-  template_name = 'team/team_static.html'
+    template_name = 'team/team_static.html'
 
 
 class HistoricView(TemplateView):
-  template_name = 'team/historic.html'
+    template_name = 'team/historic.html'

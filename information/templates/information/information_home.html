@@ -1,11 +1,11 @@
-<div id="information" class="container-fluid text-center bg-grey">
+<div id="information" class="container-fluid text-center">
   <h2>NOTÍCIAS</h2>
   <br>
   <div class="row slideanim">
     {% for information in informations %}
       <div class="col-sm-4">
         <h4>{{information}}</h4>
-        <p class="text-justify">{{information.content|truncatewords:35}}</p>
+        <p>{{information.content|truncatewords:35}}</p>
       </div>
     {% endfor %}
   </div>
