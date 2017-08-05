@@ -9,3 +9,5 @@ Financiado pelo Ministério da Educação, o grupo PET-Química conta com aproxi
 [![Issue Count](https://codeclimate.com/github/VWApplications/PET/badges/issue_count.svg)](https://codeclimate.com/github/VWApplications/PET)
 
 [![Build Status](https://travis-ci.org/VWApplications/PET.svg?branch=master)](https://travis-ci.org/VWApplications/PET)
+
+O site foi desenvolvido por Anndréia Letícia Leite Fiusa e Victor Hugo Arnaud Deon.
