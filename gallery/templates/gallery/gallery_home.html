@@ -10,13 +10,13 @@
     </ol>
 
     <div class="carousel-inner" role="listbox">
-      {% if first_picture.image_url %}
+      {% if first_picture %}
         <div class="item active">
           <img src="{{first_picture.image_url}}" class="img-responsive img-gallery" alt="{{first_picture.title}}">
         </div>
       {% else %}
         <div class="item active">
-          <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="Imagem não encontrada">
+          <img src="{% static 'gallery/img/image-not-found.png' %}" class="img-responsive img-gallery" alt="Imagem não encontrada">
         </div>
       {% endif %}
       {% for photo in gallery %}
