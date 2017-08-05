@@ -1,33 +1,35 @@
 {% load static %}
-<div id="gallery" class="container-fluid text-center bg-grey">
+<div id="gallery" class="container-fluid text-center">
   <h2>EXPOSIÇÕES DE FOTOS</h2><br>
-  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+  <div id="myCarousel" class="text-center carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="{{favorite.id}}" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="{{first_picture.id}}" class="active"></li>
       {% for photo in gallery %}
         <li data-target="#myCarousel" data-slide-to="{{photo.id}}"></li>
       {% endfor %}
     </ol>
+
     <div class="carousel-inner" role="listbox">
-      {% if recent.image %}
+      {% if first_picture %}
         <div class="item active">
-          <img src="{{recent.image.url}}" class="img-responsive img-gallery" alt="{{recent.title}}">
+          <img src="{{first_picture.image_url}}" class="img-responsive img-gallery" alt="{{first_picture.title}}">
         </div>
       {% else %}
         <div class="item active">
-          <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="{{favorite.title}}">
+          <img src="{% static 'gallery/img/image-not-found.png' %}" class="img-responsive img-gallery" alt="Imagem não encontrada">
         </div>
       {% endif %}
       {% for photo in gallery %}
         <div class="item">
-          <img src="{{photo.image.url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
+          <img src="{{photo.image_url}}" class="img-responsive img-gallery" alt="{{photo.title}}">
         </div>
       {% empty %}
         <div class="item">
-          <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive img-gallery" alt="Image">
+          <img src="{% static 'gallery/img/image-not-found.png' %}" class="img-responsive img-gallery" alt="Imagem não encontrada">
         </div>
       {% endfor %}
     </div>
+
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Anterior</span>

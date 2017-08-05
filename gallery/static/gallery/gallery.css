@@ -1,9 +1,16 @@
 .gallery-img {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   padding: 5px;
   margin-bottom: 10px;
   box-shadow: 3px 3px 15px grey;
+}
+
+.gallery-folder {
+  width: 250px;
+  height: 250px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .container-fluid {

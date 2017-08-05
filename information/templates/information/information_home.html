@@ -1,5 +1,5 @@
-<div id="information" class="container-fluid text-center bg-grey">
-  <h2>INFORMAÇÕES</h2>
+<div id="information" class="container-fluid text-center">
+  <h2>NOTÍCIAS</h2>
   <br>
   <div class="row slideanim">
     {% for information in informations %}
@@ -9,5 +9,5 @@
       </div>
     {% endfor %}
   </div>
-  <br><br><a href="{% url 'information:index' %}" class="btn btn-default btn-lg" role="button">Ver mais informações</a>
+  <br><br><a href="{% url 'information:index' %}" class="btn btn-default btn-lg" role="button">Ver mais notícias</a>
 </div>

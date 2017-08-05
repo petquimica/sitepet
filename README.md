@@ -6,8 +6,6 @@ Financiado pelo Ministério da Educação, o grupo PET-Química conta com aproxi
 
 [![Code Climate](https://codeclimate.com/github/VWApplications/PET/badges/gpa.svg)](https://codeclimate.com/github/VWApplications/PET)
 
-[![Test Coverage](https://codeclimate.com/github/VWApplications/PET/badges/coverage.svg)](https://codeclimate.com/github/VWApplications/PET/coverage)
-
 [![Issue Count](https://codeclimate.com/github/VWApplications/PET/badges/issue_count.svg)](https://codeclimate.com/github/VWApplications/PET)
 
 [![Build Status](https://travis-ci.org/VWApplications/PET.svg?branch=master)](https://travis-ci.org/VWApplications/PET)

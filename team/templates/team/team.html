@@ -3,26 +3,33 @@
 {% block css %}<link rel="stylesheet" href="{% static 'team/css/team.css' %}" />{% endblock %}
 {% block active-about %}active{% endblock %}
 {% block main %}
-<div class="container-fluid container-prof">
-  <div class="jumbotron text-center">
-    <h2>CONHEÇA NOSSO TIME</h2>
-    <img src="{{teacher.photo.url}}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
-    <h4>Tutora {{teacher.name}}</h4>
-    <div class="col-sm-12">
-      <p class="prof-description">{{teacher.description}}</p>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h2>CONHEÇA NOSSO TIME</h2>
+      {% if teacher %}
+        <img src="{{teacher.photo}}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
+      {% else %}
+        <img src="{% static 'gallery/img/image-not-found.png' %}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
+      {% endif %}
+      <h4>Tutora {{teacher.name}}</h4>
     </div>
   </div>
-</div>
 
-<div class="container-fluid text-center bg-grey">
-  <div class="row slideanim team-description">
-    <div class="col-sm-3">
-      {% for member in team %}
-        <img src="{{member.photo.url}}" class="img-responsive img-circle img-team" alt="{{member.name}}">
+  <div class="container-fluid text-center bg-grey">
+    {% for member in team %}
+      {% if forloop.first %}
+        <div class="row slideanim">
+      {% endif %}
+      <div class="col-sm-3">
+        <img src="{{member.photo}}" class="img-responsive img-circle img-team" alt="{{member.name}}" />
         <h4>{{member.name}}</h4>
-        <p class="team-description">{{member.description|linebreaksbr}}</p>
-      {% endfor %}
-    </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
+        </div><div class="row slideanim">
+      {% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% empty %}
+      <p class="not-found">A equipe está vazia.</p>
+    {% endfor %}
   </div>
-</div>
 {% endblock %}

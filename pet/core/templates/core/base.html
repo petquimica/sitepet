@@ -25,12 +25,21 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav navbar-right">
-                <li class="{% block active-about %}{% endblock %}"><a href="{% url 'team:team' %}"><span class="glyphicon
-                                        glyphicon-education"></span> TIME</a></li>
-                <li class="{% block active-historic %}{% endblock %}"><a href="{% url 'team:historic' %}"><span class="glyphicon glyphicon-comment"></span> BREVE HISTÓRICO</a></li>
-                <li class="{% block active-info %}{% endblock %}"><a href="{% url 'information:index' %}"><span class="glyphicon glyphicon-list-alt"></span> INFORMAÇÕES</a></li>
-                <li class="{% block active-project %}{% endblock %}"><a href="{% url 'project:index' %}"><span class="glyphicon glyphicon-briefcase"></span> PROJETOS</a></li>
-                <li class="{% block active-gallery %}{% endblock %}"><a href="{% url 'gallery:gallery' %}"><span class="glyphicon glyphicon-picture"></span> GALERIA</a></li>
+                <li class="{% block active-about %}{% endblock %}">
+                  <a href="{% url 'team:team' %}"><span class="glyphicon glyphicon-education"></span> EQUIPE</a>
+                </li>
+                <li class="{% block active-historic %}{% endblock %}">
+                  <a href="{% url 'team:historic' %}"><span class="glyphicon glyphicon-comment"></span> BREVE HISTÓRICO</a>
+                </li>
+                <li class="{% block active-info %}{% endblock %}">
+                  <a href="{% url 'information:index' %}"><span class="glyphicon glyphicon-list-alt"></span> NOTÍCIAS</a>
+                </li>
+                <li class="{% block active-project %}{% endblock %}">
+                  <a href="{% url 'project:index' %}"><span class="glyphicon glyphicon-briefcase"></span> PROJETOS</a>
+                </li>
+                <li class="{% block active-gallery %}{% endblock %}">
+                  <a href="{% url 'gallery:gallery' %}"><span class="glyphicon glyphicon-picture"></span> GALERIA</a>
+                </li>
                 <li><a href="/admin/"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
               </ul>
             </div>
