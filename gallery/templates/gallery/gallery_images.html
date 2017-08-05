@@ -4,24 +4,32 @@
 {% block active-gallery %}active{% endblock %}
 {% block main %}
   <div class="container-fluid text-center">
-    <h2>Galeria de Fotos</h2>
+    <h2>Galeria de fotos</h2>
+    <p><a href="{% url 'gallery:gallery' %}">Voltar</a></p>
   </div>
   <div class="container-fluid">
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class="row">
-          {% for photo in object_list %}
-            <div class="col-sm-3 text-center">
-              {% if photo.image_url %}
-                <img src="{{photo.image_url}}" class="img-responsive  gallery-img" alt="Image">
-              {% else %}
-                <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive gallery-img img-thumbnail" alt="Image not found">
-              {% endif %}
+        {% for photo in object_list %}
+          {% if forloop.first %}
+            <div class="row">
+          {% endif %}
+          <div class="col-sm-3 text-center">
+            {% if photo.image_url %}
+              <img src="{{photo.image_url}}" class="img-responsive  gallery-img" alt="Image">
+            {% else %}
+              <img src="{% static 'gallery/image-not-found.png' %}" class="img-responsive gallery-img img-thumbnail" alt="Image not found">
+            {% endif %}
+          </div>
+          {% if forloop.counter|divisibleby:4 %}
+            </div><div class="row">
+          {% endif %}
+          {% if forloop.last %}
             </div>
-          {% empty %}
-            <p class="not-found">Não há fotos nessa pasta.</p>
-          {% endfor %}
-        </div>
+          {% endif %}
+        {% empty %}
+          <p class="not-found">Não há fotos nessa pasta.</p>
+        {% endfor %}
       </div>
     </div>
     <ul class="pagination">

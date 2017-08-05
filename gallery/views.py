@@ -5,13 +5,13 @@ from .models import Gallery
 class GalleryView(ListView):
     model = Gallery
     context_object_name = 'gallery'
-    paginate_by = 6
+    paginate_by = 8
     template_name = 'gallery/gallery.html'
 
 
 class GalleryImageView(ListView):
     model = Gallery
-    paginate_by = 12
+    paginate_by = 16
     template_name = 'gallery/gallery_images.html'
 
     def get_queryset(self):

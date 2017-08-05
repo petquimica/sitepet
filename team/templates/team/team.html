@@ -6,101 +6,26 @@
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h2>CONHEÇA NOSSO TIME</h2>
-      <img src="{% static 'team/img/prof.jpg' %}" class="img-responsive img-circle img-team" alt="Professora Elaine Maia">
-      <h4>Tutora Elaine Maia</h4>
+      <img src="{{teacher.photo}}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
+      <h4>Tutora {{teacher.name}}</h4>
     </div>
   </div>
 
   <div class="container-fluid text-center bg-grey">
-    <div class="row slideanim">
+    {% for member in team %}
+      {% if forloop.first %}
+        <div class="row slideanim">
+      {% endif %}
       <div class="col-sm-3">
-        <img src="{% static 'team/img/analeticia.jpg' %}" class="img-responsive img-circle img-team" alt="Ana Letícia">
-        <h4>Ana Letícia Duarte Guimarães Amaral</h4>
+        <img src="{{member.photo}}" class="img-responsive img-circle img-team" alt="{{member.name}}" />
+        <h4>{{member.name}}</h4>
       </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/annacarolline.jpg' %}" class="img-responsive img-circle img-team" alt="Anna Carolline">
-        <h4>Anna Carolline Botelho de Araújo</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/anndreialeite.jpg' %}" class="img-responsive img-circle img-team" alt="Anndréia Letícia">
-        <h4>Anndréia Letícia Leite Fiusa</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/arianeboechie.jpg' %}" class="img-responsive img-circle img-team" alt="Ariane">
-        <h4>Ariane Cristina Boechie Carvalho</h4>
-      </div>
-    </div>
-    <div class="row slideanim">
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/beatrizbatista.jpg' %}" class="img-responsive img-circle img-team" alt="Beatriz">
-        <h4>Beatriz Batista de Assumpção</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/pessoaanonima.png' %}" class="img-responsive img-circle img-team" alt="Bernardo">
-        <h4>Bernardo Dias Fróes Píramo de Souza</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/bryan.jpg' %}" class="img-responsive img-circle img-team" alt="Bryan">
-        <h4>Bryan Anthony Portos Santos</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/caioazevedo.jpg' %}" class="img-responsive img-circle img-team" alt="Caio">
-        <h4>Caio Azevedo Moreira</h4>
-      </div>
-    </div>
-    <div class="row slideanim">
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/eloizasantos.jpg' %}" class="img-responsive img-circle img-team" alt="Eloiza">
-        <h4>Eloíza Cristiny Azevedo dos Santos</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/emiliano.jpg' %}" class="img-responsive img-circle img-team" alt="Emiliano">
-        <h4>Emiliano Costa Gomes</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/gabrielaribeiro.jpg' %}" class="img-responsive img-circle img-team" alt="Gabriela">
-        <h4>Gabriela Cristina Ribeiro Andrade</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/guilhermeabreu.jpg' %}" class="img-responsive img-circle img-team" alt="Guilherme">
-        <h4>Guilherme Abreu</h4>
-      </div>
-    </div>
-    <div class="row slideanim">
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/hugo.jpg' %}" class="img-responsive img-circle img-team" alt="Hugo">
-        <h4>Hugo Oliveira Rodrigues Poley Malacco</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/iagoazevedo.jpg' %}" class="img-responsive img-circle img-team" alt="Iago">
-        <h4>Iago Azevedo Ramos</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/joaopedro.jpg' %}" class="img-responsive img-circle img-team" alt="João">
-        <h4>João Pedro Vieira Lima</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/luissousa.jpg' %}" class="img-responsive img-circle img-team" alt="Luis">
-        <h4>Luís Sousa</h4>
-      </div>
-    </div>
-    <div class="row slideanim">
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/marcelo.jpg' %}" class="img-responsive img-circle img-team" alt="Marcelo">
-        <h4>Marcelo Pinheiro Silva</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/mateuspaiva.jpg' %}" class="img-responsive img-circle img-team" alt="Mateus">
-        <h4>Mateus Freitas Paiva</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/nayaraoliveira.jpg' %}" class="img-responsive img-circle img-team" alt="Nayara">
-        <h4>Nayara dos Santos Oliveira</h4>
-      </div>
-      <div class="col-sm-3">
-        <img src="{% static 'team/img/williammendes.jpg' %}" class="img-responsive img-circle img-team" alt="William">
-        <h4>William Mendes Cunha</h4>
-      </div>
-    </div>
+      {% if forloop.counter|divisibleby:4 %}
+        </div><div class="row slideanim">
+      {% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% empty %}
+      <p class="not-found">A equipe está vazia.</p>
+    {% endfor %}
   </div>
 {% endblock %}
