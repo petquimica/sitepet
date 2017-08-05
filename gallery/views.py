@@ -18,9 +18,9 @@ class GalleryImageView(ListView):
         # get the url slug
         slug = self.kwargs.get('slug', '')
         # get all folders with specific slug, they will return only one
-        queryset = Gallery.objects.filter(slug__icontains=slug)
+        queryset = Gallery.objects.get(slug=slug)
         # get the returned folder and get all images of it
-        queryset = queryset.first().images.all()
+        queryset = queryset.images.all()
         return queryset
 
     def get_context_data(self):
