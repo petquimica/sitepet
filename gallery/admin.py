@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Gallery, Image
+from .models import Gallery, Image, HomeImages
 
 
 class ImageInlineAdmin(admin.StackedInline):
@@ -15,3 +15,4 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(HomeImages)

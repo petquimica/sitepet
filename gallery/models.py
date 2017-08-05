@@ -1,6 +1,18 @@
 from django.db import models
 
 
+class HomeImages(models.Model):
+    title = models.CharField('Título da imagem', max_length=100)
+    image_url = models.CharField('Url da imagem', max_length=250)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Imagens da página principal'
+        verbose_name_plural = 'Imagens da página principal'
+
+
 class Gallery(models.Model):
     title = models.CharField('Título da pasta', max_length=100)
     slug = models.SlugField('Identificador', max_length=100)
