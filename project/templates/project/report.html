@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'project/project.css' %}" />{% endblock %}
+{% block active-reports %}active{% endblock %}
+{% block main %}
+  <div class="jumbotron text-center">
+    <h2>RELATÓRIOS ANUAIS</h2>
+  </div>
+
+  <div class="container-fluid bg-grey">
+    <div class="row">
+      <div class="col-sm-3 text-center">
+        <a href="{% static 'project/reports/relatorio_2013.pdf' %}" class="btn btn-success btn-lg" download="relatorio2013">2013</a>
+      </div>
+      <div class="col-sm-3 text-center">
+        <a href="{% static 'project/reports/relatorio_2014.pdf' %}" class="btn btn-success btn-lg" download="relatorio2014">2014</a>
+      </div>
+      <div class="col-sm-3 text-center">
+        <a href="{% static 'project/reports/relatorio_2015.pdf' %}" class="btn btn-success btn-lg" download="relatorio2015">2015</a>
+      </div>
+      <div class="col-sm-3 text-center">
+        <a href="{% static 'project/reports/relatorio_2016.pdf' %}" class="btn btn-success btn-lg" download="relatorio2016">2016</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

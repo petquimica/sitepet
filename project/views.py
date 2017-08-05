@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.db.models import Q
 from .models import Project
 
@@ -16,6 +16,10 @@ class IndexView(ListView):
 class ProjectView(DetailView):
     model = Project
     template_name = 'project/details.html'
+
+
+class ReportView(TemplateView):
+    template_name = 'project/report.html'
 
 
 def search_project(request, project_list):
