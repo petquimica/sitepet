@@ -12,7 +12,7 @@ def home(request):
     context = {
         'informations': informations,
         'gallery': pictures,
-        'first_picture': HomeImages.objects.all()[0]
+        'first_picture': HomeImages.objects.first()
     }
     send_email(request, context)
     return render(request, template, context)

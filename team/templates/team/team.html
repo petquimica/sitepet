@@ -6,7 +6,11 @@
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h2>CONHEÇA NOSSO TIME</h2>
-      <img src="{{teacher.photo}}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
+      {% if teacher %}
+        <img src="{{teacher.photo}}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
+      {% else %}
+        <img src="{% static 'gallery/img/image-not-found.png' %}" class="img-responsive img-circle img-team" alt="Professora {{teacher.name}}">
+      {% endif %}
       <h4>Tutora {{teacher.name}}</h4>
     </div>
   </div>

@@ -7,7 +7,7 @@ class TeamView(View):
     template = 'team/team.html'
 
     def get(self, request):
-        teacher = Team.objects.get(is_teacher=True)
+        teacher = Team.objects.filter(is_teacher=True).first()
         team = Team.objects.filter(is_teacher=False)
         context = {'team': team, 'teacher': teacher}
         return render(request, self.template, context)
